@@ -1,0 +1,33 @@
+<% include partials/header %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>welcome to our blog!</h1>
+            <p>view our picks from the travels we did</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/places/new">Add new place!</a>
+            </p>    
+        </div>
+        
+    </header>
+    
+    <div class="row text-center" style="display:-webkit-flex; flex-wrap:wrap; width:100%;">
+        <div class="col-lg-12" >
+            <h3>All photos taken by us! Feel free to comment.. Thank you!</h3>
+        </div>
+    <div class="row">
+        <% places.forEach(function(places){ %>
+        <div class="col-md-3 col-sm-6" >
+            <div class="thumbnail" >
+                <img src="<%= places.image %>">
+                <div class="caption">
+                    <h4><%= places.name %></h4>
+                </div>
+            </div>
+        </div>    
+    <% }); %>    
+    </div>
+    
+</div>
+
+<% include partials/footer %>
