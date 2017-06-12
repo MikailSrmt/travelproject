@@ -2,39 +2,43 @@
 
 ## First Day
 
-    * Landing page
-    * Add places page that list all places the couple went
+* Landing page
+* Add places page that list all places the couple went
 
 
 #### Each place has:
 
-    * Name
-    * Image
+* Name
+* Image
     
     
 ## Second Day
 
 #### Layout and Basic Styling
 
-    * Create our header and footer partials
-    * Add in Bootstrap
+* Create our header and footer partials
+* Add in Bootstrap
 
 
 ## Third Day
 
-    * Setup new places POST route
-    * Add in body-parser
-    * Setup route to show form
-    * Add basic unstyled form
+* Setup new places POST route
+* Add in body-parser
+* Setup route to show form
+* Add basic unstyled form
 
 
 ## Fourth Day
 
-    * Add a better header/title
-    * Make campgrounds display in a grid
+* Add a better header/title
+* Make campgrounds display in a grid
  
 
 ## Fifth Day
 
-    * Add a navbar to all templates
-    * Style the new add place form
+* Add a navbar to all templates
+* Style the new add place form
+    
+## Sixth Day
+
+    
