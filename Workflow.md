@@ -41,4 +41,7 @@
     
 ## Sixth Day
 
-    
+* Add Mongoose
+* Install and Configure Mongoose
+* Setup place model
+* Use place model inside of our routes
