@@ -11,7 +11,8 @@ app.set("view engine","ejs");
 
 var placesSchema = new mongoose.Schema({
    name: String,
-   image: String
+   image: String,
+   description: String
    
 });
 
@@ -19,7 +20,9 @@ var Places = mongoose.model("places", placesSchema);
 
 // Places.create(
 //     {
-//         name : "Belgrad", image: "http://www.theodora.com/wfb/photos/serbia/republic_square_in_belgrade_serbia_photo_misho_ognjanovic.jpg"
+//         name : "Austin", 
+//         image: "http://www.foreclosuredataonline.com/images/resources/austin-tx/austin-texas.jpg",
+//         description: "The Liberal Capital in the republician state wow!"
 //     }, function(err,places){
 //       if(err){
 //           console.log(err);
@@ -29,6 +32,11 @@ var Places = mongoose.model("places", placesSchema);
 //       }
 //     });
 
+//  {"name" : "Toronto", "image" : "https://thechive.files.wordpress.com/2015/10/whats-the-deal-with-toronto-canada-17-photos-17.jpg?quality=85&strip=info"},
+//  {"name" : "Fethiye", "image" : "http://www.importantgroup.com.tr/userfiles/image/fethiye/large%20600/0019.jpg"},
+//  {"name" : "Belgrad", "image" : "http://www.theodora.com/wfb/photos/serbia/republic_square_in_belgrade_serbia_photo_misho_ognjanovic.jpg"}, 
+//  {"name" : "Austin" , "image" : "http://www.foreclosuredataonline.com/images/resources/austin-tx/austin-texas.jpg"}
+// INDEX - show all places
 
 app.get("/", function(req,res){
     res.render("landing")
@@ -41,19 +49,20 @@ app.get("/places", function(req,res){
         if(err){
             console.log(err)
         }else{
-            res.render("places",{places : allPlaces}); 
+            res.render("index",{places : allPlaces}); 
         }
     })
 });
 
-
+// CREATE - add new place to DB
 app.post("/places", function(req,res){
 
    // get data from form and add to places array
     var name = req.body.name;
     var image = req.body.image;
-    var newPlace = {name : name , image : image}
-    //Create a new campground and save to DB
+    var desc = req.body.description;
+    var newPlace = {name : name , image : image, description : desc}
+    //Create a new place and save to DB
     Places.create(newPlace, function(err, justCreated){
        if(err){
            console.log(err);
@@ -62,11 +71,26 @@ app.post("/places", function(req,res){
             res.redirect("/places");
         }
     });
-   
 });
 
+// NEW - show form to create new place
 app.get("/places/new",function(req, res) {
-    res.render("new.ejs");
+    res.render("new");
+});
+
+// SHOW - show detailed information about place
+
+app.get("/places/:id", function(req, res) {
+    // find place with provided ID
+    Places.findById(req.params.id, function(err,foundPlace){
+        if(err){
+            console.log(err);
+        }else{
+            // render show template with that place
+            res.render("show",{place:foundPlace});
+        }
+    });
+
 });
 
 

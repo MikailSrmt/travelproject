@@ -31,7 +31,7 @@
 ## Fourth Day
 
 * Add a better header/title
-* Make campgrounds display in a grid
+* Make places display in a grid
  
 
 ## Fifth Day
@@ -51,3 +51,15 @@
 * Add description to our place model
 * Show db.collection.drop()
 * Add a show route/template
+
+RESTful Routes
+
+|name   | url       |verb   |description                        |
+|---    | ---       |---    |---                                |
+|INDEX  | /cats     |GET    |Display a list of all cats         |
+|NEW    | /cats/new |GET    |Display a form to make a new cats  |
+|CREATE | /cats     |POST   |Add a new cat to DB                |
+|SHOW   | /cats/:id |GET |Shows info about cat                  |
+|       |           |       |                                   |
+|       |           |       |                                   |
+|       |           |       |                                   |
