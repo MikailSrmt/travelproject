@@ -41,7 +41,13 @@
     
 ## Sixth Day
 
-* Add Mongoose
+### Add Mongoose
 * Install and Configure Mongoose
 * Setup place model
 * Use place model inside of our routes
+
+### Show Page
+* Review the RESTful routes we've seen so far
+* Add description to our place model
+* Show db.collection.drop()
+* Add a show route/template
