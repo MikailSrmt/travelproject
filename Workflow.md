@@ -52,14 +52,20 @@
 * Show db.collection.drop()
 * Add a show route/template
 
-RESTful Routes
+# Refactor Mongoose Code
+* Create a models directory
+* Use module.exports
+* Require everything correctly
 
-|name   | url       |verb   |description                        |
-|---    | ---       |---    |---                                |
-|INDEX  | /cats     |GET    |Display a list of all cats         |
-|NEW    | /cats/new |GET    |Display a form to make a new cats  |
-|CREATE | /cats     |POST   |Add a new cat to DB                |
-|SHOW   | /cats/:id |GET |Shows info about cat                  |
-|       |           |       |                                   |
-|       |           |       |                                   |
-|       |           |       |                                   |
+# Add Seeds File
+* Add a seeds.js file
+* Run the seeds file everytime the server starts
+
+# Add the Comment model!
+* Make our errors go away!
+* Display comments on campground show 
+
+# Comment NEW/CREATE
+* Discuss nested routes
+* Add the comment NEW and CREATE routes
+* Add the new comment form

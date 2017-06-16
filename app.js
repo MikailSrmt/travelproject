@@ -2,21 +2,14 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Places = require("./models/place");
+var seedDB = require("./seeds");
 
 mongoose.connect("mongodb://localhost/coupletraveler");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
+seedDB();
 
-// SCHEMA SETUP
-
-var placesSchema = new mongoose.Schema({
-   name: String,
-   image: String,
-   description: String
-   
-});
-
-var Places = mongoose.model("places", placesSchema);
 
 // Places.create(
 //     {
@@ -82,12 +75,13 @@ app.get("/places/new",function(req, res) {
 
 app.get("/places/:id", function(req, res) {
     // find place with provided ID
-    Places.findById(req.params.id, function(err,foundPlace){
+    Places.findById(req.params.id).populate("comments").exec(function(err,foundPlace){
         if(err){
             console.log(err);
         }else{
+            console.log(foundPlace);
             // render show template with that place
-            res.render("show",{place:foundPlace});
+            res.render("show",{place: foundPlace});
         }
     });
 
