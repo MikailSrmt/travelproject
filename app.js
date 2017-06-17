@@ -1,15 +1,17 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-var Places = require("./models/place");
-var seedDB = require("./seeds");
+var express = require("express"),
+    app = express(),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    Places = require("./models/place"),
+    Comment = require("./models/comment"),
+    seedDB = require("./seeds")
 
 mongoose.connect("mongodb://localhost/coupletraveler");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
+app.use(express.static(__dirname + "/public"));
 seedDB();
-
+    
 
 // Places.create(
 //     {
@@ -42,7 +44,7 @@ app.get("/places", function(req,res){
         if(err){
             console.log(err)
         }else{
-            res.render("index",{places : allPlaces}); 
+            res.render("places/index",{places : allPlaces}); 
         }
     })
 });
@@ -68,7 +70,7 @@ app.post("/places", function(req,res){
 
 // NEW - show form to create new place
 app.get("/places/new",function(req, res) {
-    res.render("new");
+    res.render("places/new");
 });
 
 // SHOW - show detailed information about place
@@ -81,12 +83,50 @@ app.get("/places/:id", function(req, res) {
         }else{
             console.log(foundPlace);
             // render show template with that place
-            res.render("show",{place: foundPlace});
+            res.render("places/show",{place: foundPlace});
         }
     });
 
 });
 
+///===============
+/// COMMENT ROUTES
+///===============
+
+app.get("/places/:id/comments/new", function(req, res) {
+    // find place by id
+    Places.findById(req.params.id, function(err, place){
+       if(err){
+           console.log(err)
+       } else{
+            res.render("comments/new", {place:place})
+       }
+    });
+});
+
+app.post("/places/:id/comments",function(req,res){
+   //lookup place using ID
+   Places.findById(req.params.id, function(err, place) {
+      if(err){
+          console.log(err)
+          res.redirect("/places")
+      }else{
+          Comment.create(req.body.comment, function(err,comment){
+              if(err){
+                  console.log(err);
+              }else{
+                  place.comments.push(comment);
+                  place.save();
+                  res.redirect('/places/'+ place._id);
+              }
+          });
+          console.log(req.body.comment);
+      } 
+   });
+   //create new comment
+   //connect new comment to place
+   //redirect place show page
+});
 
 app.listen(process.env.PORT,process.env.IP, function(){
        console.log("Couple Traveler Server Started!");

@@ -69,3 +69,7 @@
 * Discuss nested routes
 * Add the comment NEW and CREATE routes
 * Add the new comment form
+
+# Style Show Page
+* Add sidebar to show page
+* Display comment nicely

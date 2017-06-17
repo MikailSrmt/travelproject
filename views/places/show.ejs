@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">IKOMIKO</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%=place.image%>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$400 spent for 3 Days</h4>
+                    <h4><%= place.name %></h4>
+                    <p><%= place.description %></p>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/places/<%=place._id%>/comments/new">Leave a comment!</a>
+                </div>
+                <hr>
+                <% place.comments.forEach(function(comment){%>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="pull-right">10 Days Ago</span>
+                            <p>
+                                <%=comment.text %>
+                            </p>
+                        </div>
+                    </div>
+                    
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<% include ../partials/footer %>
