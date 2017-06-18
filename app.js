@@ -5,6 +5,7 @@ var express = require("express"),
     Place = require("./models/place"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
+    methodOverride = require("method-override"),
     User = require("./models/user"),
     expressSession = require("express-session"),
     Comment = require("./models/comment"),
@@ -17,6 +18,7 @@ mongoose.connect("mongodb://localhost/coupletraveler");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 //seedDB(); //seed the database
 
 // PASSPORT CONFIGURATION

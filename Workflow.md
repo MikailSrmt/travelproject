@@ -110,6 +110,7 @@
 ### Refactor The Routes
 * Use Express router to reorganize all routes
 
+## Tenth Day
 
 ### User + Comments
 * Associate user and comments
@@ -120,4 +121,13 @@
 * Prevent an unauthencticated user from creating a place
 * Save username+id to newly created place
 
+### Editing Places
+* Add Method-Override
+* Add Edit Route for Places
+* Add Link to Edit Page
+* Add Update Route
+* Fix $set problem??
 
+### Deleting Places
+* Add Destroy Route
+* Add Delete Button

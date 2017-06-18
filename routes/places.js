@@ -2,6 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var Place = require("../models/place");
 
+
 // INDEX - show all places
 
 router.get("/", function(req,res){
@@ -23,13 +24,19 @@ router.post("/", isLoggedIn,function(req,res){
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
-    var newPlace = {name : name , image : image, description : desc};
+    var author = {
+        id: req.user._id,
+        username : req.user.username
+    };
+    var newPlace = {name : name , image : image, description : desc, author:author};
+    
     //Create a new place and save to DB
     Place.create(newPlace, function(err, justCreated){
        if(err){
            console.log(err);
        } else{
             //redirect back to places page (default is get)
+            console.log(justCreated);
             res.redirect("/places");
         }
     });
@@ -53,6 +60,32 @@ router.get("/:id", function(req, res) {
             res.render("places/show",{place: foundPlace});
         }
     });
+    
+    
+//EDIT PLACES ROUTE
+router.get("/:id/edit",function(req, res) {
+    Place.findById(req.params.id, function(err, foundPlace){
+       if(err){
+           res.redirect("/places")
+       } else{
+            res.render("places/edit", {place : foundPlace});  
+       }
+    });
+    
+});
+
+router.put("/:id", function(req,res){
+   // find and update the correct place
+   Place.findByIdAndUpdate(req.params.id, req.body.place, function(err, updatedPlace){
+      if(err){
+          res.redirect("/places");
+      } else{
+           res.redirect("/places/" + req.params.id);
+     } 
+   });
+   // redirect somewhere(show page)
+});
+//UPDATE PLACES ROUTE
 
 });
 //middleware
