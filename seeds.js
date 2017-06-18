@@ -28,34 +28,34 @@ var data = [
 function seedDB() {
     // body... 
     Place.remove({},function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("removed places!");
-        //add places
-        data.forEach(function(seed){
-           Place.create(seed, function(err, place){
-               if(err){
-                   console.log(err)
-               }else{
-                   console.log("Place added")
-                   //create comment
-                   Comment.create(
-                       {
-                            text: "Very nice place thank you for sharing",
-                            author: "Kemal"
-                       }, function(err,comment){
-                          if(err){
-                              console.log(err)
-                          } else{
-                              place.comments.push(comment);
-                              place.save();
-                              console.log("Created new comment")
-                          }
-                       });
-               }
-           }); 
-        });    
+        // if(err){
+        //     console.log(err);
+        // }
+        // console.log("removed places!");
+        // //add places
+        // data.forEach(function(seed){
+        //   Place.create(seed, function(err, place){
+        //       if(err){
+        //           console.log(err)
+        //       }else{
+        //           console.log("Place added")
+        //           //create comment
+        //           Comment.create(
+        //               {
+        //                     text: "Very nice place thank you for sharing",
+        //                     author: "Kemal"
+        //               }, function(err,comment){
+        //                   if(err){
+        //                       console.log(err)
+        //                   } else{
+        //                       place.comments.push(comment);
+        //                       place.save();
+        //                       console.log("Created new comment")
+        //                   }
+        //               });
+        //       }
+        //   }); 
+        // });    
 });
 
 }    
