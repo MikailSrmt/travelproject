@@ -126,8 +126,32 @@
 * Add Edit Route for Places
 * Add Link to Edit Page
 * Add Update Route
-* Fix $set problem??
+* Fix $set problem?
 
 ### Deleting Places
 * Add Destroy Route
 * Add Delete Button
+
+### Authorization 1 : Places
+* User can only edit his place
+* User can only his place
+* Hide/Show edit-delete button
+
+## Eleventh Day
+
+### Editing Comments
+* Add edit routes for comments
+* Add edit button 
+* Add update route
+
+
+### Deleting Comments
+* Add DESTROY route
+* Add delete button
+* 
+
+### Authorization 2 : Comments
+* User can only edit his comment
+* User can only his comment
+* Hide/Show edit-delete button
+* Refactor Middleware
