@@ -154,4 +154,6 @@
 * User can only edit his comment
 * User can only his comment
 * Hide/Show edit-delete button
-* Refactor Middleware
+* Refactor Middleware\
+
+### Refactor the middleware
