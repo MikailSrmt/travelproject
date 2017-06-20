@@ -24,12 +24,13 @@ router.post("/", middleware.isLoggedIn,function(req,res){
    // get data from form and add to places array
     var name = req.body.name;
     var image = req.body.image;
+    var price = req.body.price;
     var desc = req.body.description;
     var author = {
         id: req.user._id,
         username : req.user.username
     };
-    var newPlace = {name : name , image : image, description : desc, author:author};
+    var newPlace = {name : name , price: price ,image : image, description : desc, author:author};
     
     //Create a new place and save to DB
     Place.create(newPlace, function(err, justCreated){
