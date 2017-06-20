@@ -17,11 +17,12 @@ router.get("/new",middleware.isLoggedIn, function(req, res) {
        }
     });
 });
-
+// COMMENT CREATE 
 router.post("/",middleware.isLoggedIn ,function(req,res){
    //lookup place using ID
    Place.findById(req.params.id, function(err, place) {
       if(err){
+           req.flash("error", "Something went wrong!");
           console.log(err);
           res.redirect("/places");
       }else{
@@ -36,6 +37,7 @@ router.post("/",middleware.isLoggedIn ,function(req,res){
                   comment.save();
                   place.comments.push(comment);
                   place.save();
+                  req.flash("success", "Comment posted!")
                   res.redirect('/places/'+ place._id);
               }
           });
@@ -75,6 +77,7 @@ router.delete("/:comment_id",middleware.checkCommentOwnership, function(req,res)
        if(err){
            res.redirect("back");
        }else{
+           req.flash("success", "Comment Deleted!")
            res.redirect("/places/" + req.params.id);
        }
    })

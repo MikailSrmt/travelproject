@@ -157,3 +157,11 @@
 * Refactor Middleware\
 
 ### Refactor the middleware
+
+### Adding in Flash
+* Demo working version
+* Install and configure connect-flash
+* Add boostrap alerts to header
+* 
+
+### Refactor Landing Page
