@@ -15,7 +15,8 @@ var express = require("express"),
 var commentRoutes = require("./routes/comments"),
     placeRoutes = require("./routes/places"),
     indexRoutes = require("./routes/index")
-mongoose.connect("mongodb://localhost/coupletraveler");
+//mongoose.connect("mongodb://localhost/coupletraveler");
+mongoose.connect("mongodb://slpAdmin:zxasqw12@ds131782.mlab.com:31782/coupletraveler");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname + "/public"));
